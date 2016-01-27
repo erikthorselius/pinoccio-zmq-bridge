@@ -22,12 +22,6 @@ server(opts, function(troop){
     console.log(troop.token+'>', JSON.stringify(ev));
   });
 
-  // Turn Scout 1's led cyan, using a ScoutScript command
-  troop.command(1, "led.cyan", function(err, res){
-    // Log the command's response object
-    console.log(res);
-  });
-
 }).on('listening', function(){
   console.log('local pinoccio server listening on ', this.address());
 });
