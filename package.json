@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "pinoccio-server": "^0.1.1"
+    "pinoccio-server": "^0.1.1",
+    "zmq": "^2.14.0"
   }
 }
