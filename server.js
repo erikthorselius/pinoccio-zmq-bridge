@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 var zmq = require('zmq'),
   sock = zmq.socket('pub'),
   server = require('pinoccio-server');
@@ -17,6 +18,9 @@ function createMsg(data) {
     "type": "pinoccio",
     "data": data
   }
+  if (data.report.type == "temp") {
+    msg.value = data.report.c
+  }
   switch (data.id) {
     case 2:
       msg.name = "Study"
@@ -29,8 +33,9 @@ function createMsg(data) {
 
 server(opts, function(troop) {
   troop.on('data', function(ev) {
-    console.log(troop.token + '>', JSON.stringify(ev));
-    sock.send(['sensor', JSON.stringify(createMsg(ev))]);
+    var msg = JSON.stringify(createMsg(ev));
+    console.log(troop.token + '>', msg);
+    sock.send(['sensor', msg]);
   });
 
 }).on('listening', function() {
