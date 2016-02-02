@@ -21,7 +21,7 @@ function createMsg(data) {
   if (data.report.type == "temp") {
     msg.value = data.report.c
   }
-  switch (data.id) {
+  switch (data.from) {
     case 2:
       msg.name = "Study"
       break;
